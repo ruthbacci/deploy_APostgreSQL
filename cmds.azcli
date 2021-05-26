@@ -88,7 +88,8 @@ ssh ruthi@13.80.122.244
 #https://app.terraform.io/app/bacciworld/workspaces  - TF Cloud Workspace
 
 #migrate state to remote
-terraform login
+#Login to TF to acquire a TF API Token
+terraform log in
 terraform init 
 
 #remove local state
@@ -125,6 +126,9 @@ git <cnd> --help
 #Stage a new file - create an action - tr destroy.  Only TF apply runs on github push.  The other actons can be run manually.
 git add main.tf
 git add cmds.azcli
+git add .github/workflows/terraform_apply.yml
+git add .github/workflows/terraform_plan.yml
+git add .github/workflows/terraform_destroy.yml
 #or use git add all files
 git add .
 git rm -r --cached .
