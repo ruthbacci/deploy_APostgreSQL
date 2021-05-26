@@ -90,6 +90,7 @@ ssh ruthi@13.80.122.244
 #migrate state to remote
 #Login to TF to acquire a TF API Token
 terraform log in
+#Must then initialise state after acquiring TF API token
 terraform init 
 
 #remove local state
@@ -135,6 +136,6 @@ git rm -r --cached .
 
 #Commit all (-a) changes (including staged) and add the message (-m)
 git commit -a -m ".gitignore fix"
-git commit -a -m "TF backend state changes"
+git commit -a -m "Fix Action failing - Token Issue"
 
 git push
