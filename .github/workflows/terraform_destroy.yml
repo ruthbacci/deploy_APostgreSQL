@@ -15,6 +15,10 @@ jobs:
         cli_config_credentials_token: ${{ secrets.tf_token }}
         terraform_version: 0.14.7
 
+    - name: Terraform Init
+      id: init
+      run: terraform init -no-color
+
     - name: Terraform Destroy
-      id: plan
+      id: destroy
       run: terraform destroy -auto-approve
