@@ -88,8 +88,8 @@ ssh ruthi@13.80.122.244
 #https://app.terraform.io/app/bacciworld/workspaces  - TF Cloud Workspace
 
 #migrate state to remote
-#Login to TF to acquire a TF API Token
-terraform log in
+#Login to TF to acquire a TF API Token, this must be stored in GH as an Actions Secret
+terraform login
 #Must then initialise state after acquiring TF API token
 terraform init 
 
