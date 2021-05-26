@@ -123,7 +123,8 @@ git --help
 git <cnd> --help
 
 #Stage a new file - create an action - tr destroy.  Only TF apply runs on github push.  The other actons can be run manually.
-git add .terraform.lock.hcl
+git add main.tf
+git add cmds.azcli
 #or use git add all files
 git add .
 git rm -r --cached .
