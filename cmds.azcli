@@ -130,6 +130,7 @@ git add cmds.azcli
 git add .github/workflows/terraform_apply.yml
 git add .github/workflows/terraform_plan.yml
 git add .github/workflows/terraform_destroy.yml
+git add secrets.auto.tfvars
 #or use git add all files
 git add .
 git rm -r --cached .
