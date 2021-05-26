@@ -1,0 +1,135 @@
+#Resources leveraged
+#Tutorial: https://learn.hashicorp.com/tutorials/terraform/infrastructure-as-code?in=terraform/azure-get-started
+#https://learn.hashicorp.com/tutorials/terraform/cloud-sign-up
+
+#############################################install tf############################################
+
+#update homebrew
+git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow
+
+#install hashicorp homebrew packages
+brew tap hashicorp/tap
+
+#install tf
+brew install hashicorp/tap/terraform
+
+#update tf
+brew upgrade hashicorp/tap/terraform
+
+#verify installation
+terraform -help
+terraform -help plan 
+
+terraform -install-autocomplete
+#########################################start building###############################################
+
+alias tf=terraform
+
+#install azcli
+brew update && brew install azure-cli
+
+#update az cli
+brew upgrade azure-cli
+
+az login
+
+#see subscription you are currenlty using
+az account show --output table
+
+#make a new directory called 'learn-terraform-azure' in the repo and move into this directory
+mkdir learn-terraform-azure && cd $_
+
+#create the main.tf file and then......
+#intiialise tf directory
+terraform init
+
+
+#generate an execution plan  '+ shows resources that will be deployed'
+terraform plan
+
+#apply the execution
+terraform apply
+
+#show the terraform configuration state (terraform.tfstate)
+terraform show
+
+#If state file is long then just list the tf resources
+terraform state list
+
+#######################################Making a change#######################################
+#Add a change to main.tf (I added tags)
+#Create a new execution plan
+#-out flag to save the plan to a new file called 'new plan' this ensures that you apply the specific changes within your plan
+terraform plan -out=tags_plan
+
+terraform apply "tags_plan"
+terraform show
+terraform state list
+
+#remove all tf resources '- shows resources that will be removed/destroyed'
+terraform destroy
+
+########################################Running and inputting variables#######################
+terraform apply -var 'admin_username=admins' -var 'admin_password=1Loveswimming!'
+#variables get defined in terraform.tfvars file
+#variables get set in the variables.tf fil
+
+#####################################Output Variables########################################
+
+
+#ssh onto the vm
+ssh ruthi@13.80.122.244
+
+#####################################Store Remote State######################################
+
+#Create TR Cloud account, an organisation and a workspace - choose a Version Control Workflow
+#Add backend state to main.tf
+#Save all files
+#https://app.terraform.io/app/bacciworld/workspaces  - TF Cloud Workspace
+
+#migrate state to remote
+terraform login
+terraform init 
+
+#remove local state
+rm terraform.tfstate
+
+#rename local var files to terraform.auto.tfvars
+#add secrets file to logon to TF cloud (secrets.auto.tfvars)
+
+az login
+
+az account set --subscription="9679ccb0-8027-47dd-818e-c479bac9c1b5"
+
+#Create a SP to allow TF cloud to access Azure
+
+az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/9679ccb0-8027-47dd-818e-c479bac9c1b5"
+
+  "appId": "fc5ebc59-8a15-4665-8ae0-b5de6bb0f9cd",
+  "displayName": "azure-cli-2021-03-25-22-37-37",
+  "name": "http://azure-cli-2021-03-25-22-37-37",
+  "password": "nJ-dB_WV-dDzykPxrR9KvL1Xu59eaml2IG",
+  "tenant": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+
+#add the SP credentials to the TF cloud workspace in the variable section
+
+#apply the tf state
+terraform apply
+
+#Github commands
+Git pull
+
+git --help
+git <cnd> --help
+
+#Stage a new file - create an action - tr destroy.  Only TF apply runs on github push.  The other actons can be run manually.
+git add .terraform.lock.hcl
+#or use git add all files
+git add .
+git rm -r --cached .
+
+#Commit all (-a) changes (including staged) and add the message (-m)
+git commit -a -m ".gitignore fix"
+git commit -a -m "TF backend state changes"
+
+git push
