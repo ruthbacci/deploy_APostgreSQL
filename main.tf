@@ -50,10 +50,10 @@ module "postgresql" {
     { start_ip = "127.0.0.0", end_ip = "127.0.1.0" },
   ]
 
-  vnet_rule_name_prefix = "postgresql-vnet-rule-"
-  vnet_rules = [
-    { name = "subnet1", subnet_id = "<subnet_id>" }
-  ]
+  #vnet_rule_name_prefix = "postgresql-vnet-rule-"
+  #vnet_rules = [
+  #  { name = "subnet1", subnet_id = "<subnet_id>" }
+  #]
 
   tags = {
     Environment = "Demo",
@@ -63,4 +63,5 @@ module "postgresql" {
   postgresql_configurations = {
     backslash_quote = "on",
   }
+    depends_on = [azurerm_resource_group.rg-apostgresql]
 }
