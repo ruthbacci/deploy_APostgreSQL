@@ -31,7 +31,7 @@ module "postgresql" {
   resource_group_name = azurerm_resource_group.rg-apostgresql.name
   location            = azurerm_resource_group.rg-apostgresql.location
 
-  server_name                  = "example-server"
+  server_name                  = "pgsqlmeweademo"
   sku_name                     = "GP_Gen5_2"
   storage_mb                   = 5120
   backup_retention_days        = 7
