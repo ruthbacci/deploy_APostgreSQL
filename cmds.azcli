@@ -135,6 +135,8 @@ git add secrets.auto.tfvars
 git add .
 git rm -r --cached .
 
+git status
+
 #Commit all (-a) changes (including staged) and add the message (-m)
 git commit -a -m ".gitignore fix"
 git commit -a -m "Fix Action failing - Token Issue"
