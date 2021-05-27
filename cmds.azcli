@@ -93,11 +93,12 @@ terraform login
 #Must then initialise state after acquiring TF API token
 terraform init 
 
-#remove local state
+#remove local state.
 rm terraform.tfstate
 
 #rename local var files to terraform.auto.tfvars
 #add secrets file to logon to TF cloud (secrets.auto.tfvars)
+
 
 az login
 

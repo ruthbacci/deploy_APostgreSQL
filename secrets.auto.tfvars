@@ -1,2 +1,2 @@
-#admin_username = "geekywoo"
-#admin_password = "1Love2ski!"
+#admin_username = ""
+#admin_password = ""
