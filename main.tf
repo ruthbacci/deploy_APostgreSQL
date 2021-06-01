@@ -56,7 +56,7 @@ module "postgresql" {
   #]
 
   tags = {
-    Environment = "Arrival Demo",
+    Environment = "Demo for Arrival",
     CostCenter  = "Ruthi IT",
   }
 
